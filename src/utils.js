@@ -17,7 +17,7 @@ module.exports.shuffle = (someArray) => {
 };
 
 module.exports.getPictureFileName = (pictureNumber) => {
-  if (pictureNumber.length === 1) {
+  if (pictureNumber.toString().length === 1) {
     pictureNumber = `0${pictureNumber}`;
   }
 
