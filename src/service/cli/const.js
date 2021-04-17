@@ -5,7 +5,6 @@ const USER_ARGV_INDEX = 2;
 
 const ExitCode = {
   ERROR: 1,
-  SUCCESS: 0,
 };
 
 const OfferType = {
