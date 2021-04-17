@@ -15,6 +15,7 @@ const {
 } = require(`./const`);
 
 const fs = require(`fs`);
+const chalk = require(`chalk`);
 
 const DEFAULT_COUNT_OFFER = 1;
 const MAX_COUNT_OFFER = 1000;
@@ -27,7 +28,7 @@ module.exports = {
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT_OFFER;
 
     if (countOffer > MAX_COUNT_OFFER) {
-      console.error(`Не больше 1000 объявлений`);
+      console.error(chalk.red(`Не больше 1000 объявлений`));
       process.exit(ExitCode.error);
     }
 
@@ -35,10 +36,10 @@ module.exports = {
 
     fs.writeFile(MOCKS_FILE_NAME, content, (err) => {
       if (err) {
-        return console.error(`Can't write data to file...`);
+        return console.error(chalk.red(`Can't write data to file...`));
       }
 
-      return console.info(`Operation success. File created.`);
+      return console.info(chalk.green(`Operation success. File created.`));
     });
   }
 };
