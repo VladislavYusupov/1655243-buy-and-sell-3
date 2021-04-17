@@ -14,7 +14,7 @@ const {
   OfferType, SumRestrict, PictureRestrict, DescriptionSentencesRestrict, ExitCode
 } = require(`./const`);
 
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
 const chalk = require(`chalk`);
 
 const DEFAULT_COUNT_OFFER = 1;
@@ -23,7 +23,7 @@ const MOCKS_FILE_NAME = `mocks.json`;
 
 module.exports = {
   name: `--generate`,
-  run(args) {
+  async run(args) {
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT_OFFER;
 
@@ -34,13 +34,13 @@ module.exports = {
 
     const content = JSON.stringify(generateOffers(countOffer));
 
-    fs.writeFile(MOCKS_FILE_NAME, content, (err) => {
-      if (err) {
-        return console.error(chalk.red(`Can't write data to file...`));
-      }
+    try {
+      await fs.writeFile(MOCKS_FILE_NAME, content);
+      console.info(chalk.green(`Operation success. File created.`));
 
-      return console.info(chalk.green(`Operation success. File created.`));
-    });
+    } catch (err) {
+      console.error(chalk.red(`Can't write data to file...`));
+    }
   }
 };
 
