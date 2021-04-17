@@ -4,6 +4,7 @@ const {
   getRandomInt,
   shuffle,
   getPictureFileName,
+  getRandomItemsFromArray
 } = require(`../../utils`);
 
 const {
@@ -40,17 +41,18 @@ module.exports = {
 
     } catch (err) {
       console.error(chalk.red(`Can't write data to file...`));
+      process.exit(ExitCode.error);
     }
   }
 };
 
 const generateOffers = (count) => (
   Array(count).fill({}).map(() => ({
-    category: [CATEGORIES[getRandomInt(0, CATEGORIES.length - 1)]],
+    category: getRandomItemsFromArray(CATEGORIES),
     description: shuffle(SENTENCES).slice(DescriptionSentencesRestrict.MIN, DescriptionSentencesRestrict.MAX).join(` `),
     picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
     title: TITLES[getRandomInt(0, TITLES.length - 1)],
-    type: OfferType[Object.keys(OfferType)[Math.floor(Math.random() * Object.keys(OfferType).length)]],
+    type: OfferType[Object.keys(OfferType)[getRandomInt(0, Object.keys(OfferType).length - 1)]],
     sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
   }))
 );
