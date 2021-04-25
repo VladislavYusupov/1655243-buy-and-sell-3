@@ -9,7 +9,7 @@ const {
 
 const {
   FILE_SENTENCES_PATH, FILE_TITLES_PATH, FILE_CATEGORIES_PATH
-} = require(`../../data/generate`);
+} = require(`../../../data/generate`);
 
 const {
   OfferType, SumRestrict, PictureRestrict, DescriptionSentencesRestrict, ExitCode
@@ -55,7 +55,7 @@ const readContent = async (filePath) => {
 
   try {
     const content = await fs.readFile(filePath, encoding);
-    return content.split(`\n`).filter((e) => e !== ``);
+    return content.trim().split(`\n`);
   } catch (err) {
     console.error(chalk.red(err));
     return [];
