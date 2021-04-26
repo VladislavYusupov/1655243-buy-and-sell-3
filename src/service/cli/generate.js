@@ -8,10 +8,6 @@ const {
 } = require(`../../utils`);
 
 const {
-  FILE_SENTENCES_PATH, FILE_TITLES_PATH, FILE_CATEGORIES_PATH
-} = require(`../../../data/generate`);
-
-const {
   OfferType, SumRestrict, PictureRestrict, DescriptionSentencesRestrict, ExitCode
 } = require(`./const`);
 
@@ -21,6 +17,10 @@ const chalk = require(`chalk`);
 const DEFAULT_COUNT_OFFER = 1;
 const MAX_COUNT_OFFER = 1000;
 const MOCKS_FILE_NAME = `mocks.json`;
+
+const FILE_SENTENCES_PATH = `./data/sentences.txt`;
+const FILE_TITLES_PATH = `./data/titles.txt`;
+const FILE_CATEGORIES_PATH = `./data/categories.txt`;
 
 module.exports = {
   name: `--generate`,
